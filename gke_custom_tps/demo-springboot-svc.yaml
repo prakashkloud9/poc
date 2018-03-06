@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: gkecustommetrics
+ labels:
+   k8s-app: dummy-deployment
+spec:
+ type: LoadBalancer
+ ports:
+   - port: 80
+     targetPort: 8080
+   #  nodePort: 31567
+     protocol: TCP
+ selector:
+   k8s-app: dummy-deployment

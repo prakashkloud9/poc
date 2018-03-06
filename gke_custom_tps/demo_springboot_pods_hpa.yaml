@@ -1,0 +1,17 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: dummy-deployment-sd
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1beta1
+    kind: Deployment
+    name: dummy-deployment
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+  - type: Pods
+    pods:
+      metricName: jvm_threads_current
+      targetAverageValue: 10
